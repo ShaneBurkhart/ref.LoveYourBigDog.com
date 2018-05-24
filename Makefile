@@ -1,6 +1,6 @@
 .PHONY: db
 
-NAME=prelaunchr
+NAME=ref_loveyourbigdog_com
 DEV_FILE=docker-compose.dev.yml
 
 BASE_TAG=shaneburkhart/${NAME}
