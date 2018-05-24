@@ -1,0 +1,97 @@
+<div class="header">
+  <div class="content">
+    <a class="logo-wrapper" href="http://woofandwhistleshop.com"><img class="logo" src="<%= asset_path("home/ww-logo-white.png") %>"></a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="page-content clearfix">
+    <div class="doggo">
+    </div>
+    <div class="share-wrap">
+      <p class="why brandon-body">Don't leave your friends behind</p>
+      <p class="title brandon-header">INVITE FRIENDS &<br>Earn Product</p>
+      <p class="subtitle brandon-body">Share your unique link via email, Facebook or Twitter and earn Woof &amp; Whistle goods for each friend who signs up.</p>
+      <div class="copy-link brandon"><%= r_url %>?ref=<%= @user.referral_code %></div>
+      <% twitter_message = "#dog #treats that are actually healthy? Can’t wait for Woof & Whistle to be back in stock!" %>
+      <div class="social-links">
+      <a href="http://www.facebook.com/sharer/sharer.php?u=<%= CGI::escape(r_url) %>?ref=<%= CGI::escape(@user.referral_code) %>&title=<%= CGI::escape("Woof & Whistle") %>" class="fb" target="_blank"></a>
+        <div class="sep"></div>
+        <a href="http://twitter.com/share?url=<%= CGI::escape(r_url) %>?ref=<%= CGI::escape(@user.referral_code) %>&text=<%= CGI::escape(twitter_message) %>" class="twit" target="_blank"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%
+  referrals_count = @user.referrals.count
+
+  stops = User::REFERRAL_STEPS
+
+  found = nil
+
+  stops.reverse_each { |stop|
+    if stop["count"] <= referrals_count and !found
+      stop["selected"] = true
+      found = stop
+    else
+      stop["selected"] = false
+    end
+  }
+%>
+<% if found %>
+  <div class="prizes <% if found %>prize-<%= found["class"] %><% end %>">
+<% else  %>
+  <div class="prizes no-prize">
+<% end %>
+  <div class="page-content">
+    <p class="callout brandon-body">Here's How It Works:</p>
+    <ul class="products clearfix">
+      <li class="title brandon-body"><p class="friends">Friends Joined</p><p class="rewards">Woof &amp; Whistle Product</p></li>
+      <li class="product progress-placeholder">
+          <p class="brandon-body">(Tap product name to view)</p>
+      </li>
+      <% stops.each_with_index do |stop, i| %>
+        <li class="product brandon <% if stop["selected"] %>selected<% end %> <% if stop["class"] == 'five' %>last<% end %>">
+          <div class="circle"><%= stop["count"] %></div>
+          <div class="sep"></div>
+          <p class="brandon-body" tabindex="<%= i %>" onblur="clearTooltip(this)" onclick="tapTooltip(this)"><%= stop["html"].html_safe %></p>
+
+          <div class="tooltip">
+            <img src="<%= asset_path(stop["image"]) %>" height="254">
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <script>
+      var lastProduct = null;
+      function tapTooltip(el) {
+        var product = el.parentElement;
+        if (lastProduct) lastProduct.classList.remove("focus");
+        product.classList.add("focus");
+        lastProduct = product;
+      }
+      function clearTooltip(el) {
+        if (lastProduct) lastProduct.classList.remove("focus");
+      }
+    </script>
+
+    <%
+      words = ''
+      if referrals_count == 1
+        words = 'friend has'
+      elsif
+        words = 'friends have'
+      end
+    %>
+
+    <% if referrals_count == 0 %>
+      <p class="place brandon"><span>No</span> friends have joined...Yet!</p>
+    <% else %>
+      <p class="place brandon"><span><%= referrals_count %></span> <%= words %> joined</p>
+    <% end %>
+    <p class="check brandon">Keep checking</p>
+
+    <p class="ship brandon">We ship to the U.S. (& Canada Soon)</p>
+  </div>
+</div>

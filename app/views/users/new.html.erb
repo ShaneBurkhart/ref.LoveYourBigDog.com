@@ -1,0 +1,12 @@
+<div class="hero">
+  <a class="logo-wrapper" href="http://woofandwhistleshop.com"><img class="logo" src="<%= asset_path("home/ww-logo-white.png") %>"></a>
+  <p class="large brandon-header">We'll be back in stock soon!</p>
+</div>
+
+<div class="form-wrap clearfix <%= "ended" if Rails.application.config.ended %>">
+  <% if Rails.application.config.ended %>
+    <%= render "users/campaign_ended" %>
+  <% else %>
+    <%= render "users/campaign_ongoing" %>
+  <% end %>
+</div>
