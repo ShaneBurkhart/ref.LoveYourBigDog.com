@@ -104,6 +104,16 @@ html.home{
 	letter-spacing: 1px;
 }
 
+#home .comic {
+    max-width: 450px;
+    padding: 0 2%;
+    margin: 20px auto 0;
+}
+
+#home .comic img {
+    max-width: 100%;
+}
+
 #home .form-wrap{
 	width: 430px;
 	max-width: 430px;
@@ -338,6 +348,7 @@ html.home{
     padding: 2%;
 }
 
+#home .header,
 #refer .header{
 	height: 90px;
 	background: #00B0D0;
@@ -347,11 +358,13 @@ html.home{
 	position: relative;
 }
 
+#home .header .content,
 #refer .header .content{
 	width: 315px;
 	margin: 0 auto;
 }
 
+#home .header p,
 #refer .header p{
 	color: #FFF;
 	font-weight: 500;
@@ -359,10 +372,12 @@ html.home{
 	line-height: 50px;
 }
 
+#home .header .content,
 #refer .header .content {
     text-align: center;
 }
 
+#home .header .logo,
 #refer .header .logo {
 	font-weight: normal;
 	font-size: 0;

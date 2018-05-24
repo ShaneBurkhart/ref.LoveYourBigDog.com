@@ -1,4 +1,5 @@
-<p class="byline brandon-body">Join the family for 20% off!</p>
+<p class="byline brandon-body">Join my newsletter to win free dog treats and toys!</p>
+
 <%= form_for @user, :url => { :action => "create" }, html: { id: "email-form" } do |f| %>
   <%= f.text_field :email, :placeholder => "Enter your email", :class => "email brandon" %>
 
@@ -11,7 +12,7 @@
     data-callback="onSubmit"
   />
 <% end %>
-<p class="ps brandon-body">psst...you can also win free stuff for signing up ;) <span style="color: #aaaaaa;">&mdash;</span> <img class="paw" src="<%= asset_path('home/paw-icon.png')%>"></p>
+<p class="ps brandon-body">psst...your dog will thank you for signing up ;) <span style="color: #aaaaaa;">&mdash;</span> <img class="paw" src="<%= asset_path('home/paw-icon.png')%>"></p>
 
 <script>
   function onSubmit(token) {
