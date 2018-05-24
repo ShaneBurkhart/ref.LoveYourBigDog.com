@@ -1,5 +1,5 @@
 web:
-    image: shaneburkhart/prelaunchr
+    image: shaneburkhart/ref_loveyourbigdog_com
     ports:
         - "4000:3000"
     links:

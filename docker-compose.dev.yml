@@ -1,5 +1,5 @@
 web:
-    image: shaneburkhart/prelaunchr:dev
+    image: shaneburkhart/ref_loveyourbigdog_com:dev
     ports:
         - "3000:3000"
     links:
@@ -15,7 +15,7 @@ web:
         - ./user.env
 
 mailcatcher:
-    image: shaneburkhart/prelaunchr:dev
+    image: shaneburkhart/ref_loveyourbigdog_com:dev
     ports:
         - "1080:1080"
     command: "mailcatcher -f --http-ip=0.0.0.0 --smtp-ip=0.0.0.0"
