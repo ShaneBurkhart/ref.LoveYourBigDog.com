@@ -96,10 +96,10 @@ logs:
 	docker-compose -f ${DEV_FILE} -p ${NAME} logs -f
 
 ssh_prod:
-	ssh -A ubuntu@code-quill-referral.shaneburkhart.com
+	ssh -A ubuntu@ref.loveyourbigdog.com
 
 deploy_prod:
-	ssh -A ubuntu@code-quill-referral.shaneburkhart.com "cd ~/prelaunchr; make prod;"
+	ssh -A ubuntu@ref.loveyourbigdog.com "cd ~/ref.LoveYourBigDog.com; make prod;"
 
 heroku_deploy:
 	docker-compose -f ${DEV_FILE} -p ${NAME} run --rm web true
