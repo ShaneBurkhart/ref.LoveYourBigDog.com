@@ -16,27 +16,27 @@ class User < ActiveRecord::Base
   REFERRAL_STEPS = [
     {
       'count' => 5,
-      'html' => 'Froot Pack x1',
+      'html' => 'Taco Dog Toy<br>w/ Squeaker',
       'class' => 'two',
-      'image' =>  'refer/tier1.png'
+      'image' =>  'refer/taco_toy_min.jpg'
     },
     {
       'count' => 10,
-      'html' => 'Froot Pack x3',
+      'html' => 'Long-Lasting<br>Himalayan Dog Chew',
       'class' => 'three',
-      'image' =>  'refer/tier2.png'
+      'image' =>  'refer/himal_dog_treat_min.jpg'
     },
     {
       'count' => 25,
-      'html' => 'Froot Pack<br>6 Month Supply',
+      'html' => 'Beef Jerky Treats<br>60 oz. Container',
       'class' => 'four',
-      'image' =>  'refer/tier3.png'
+      'image' =>  'refer/beef_jerky_treats_min.jpg'
     },
     {
       'count' => 50,
-      'html' => 'Froot Pack<br>1 Year Supply',
+      'html' => 'Duck Jerky Treats<br>Premium 40 oz. Bag',
       'class' => 'five',
-      'image' =>  'refer/tier4.png'
+      'image' =>  'refer/duck_treats_min.jpg'
     }
   ]
 
