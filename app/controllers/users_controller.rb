@@ -38,7 +38,7 @@ class UsersController < ApplicationController
           status: "subscribed",
           merge_fields: {
             ME_URL: "#{refer_a_friend_url}?me_ref=#{@user.referral_code}",
-            REFER_URL: "#{r_url}?ref=#{@user.referral_code}",
+            REFER_URL: "#{root_url}?ref=#{@user.referral_code}",
             REFER_NUM: 0,
           }
         })
