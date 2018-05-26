@@ -90,8 +90,10 @@ class UsersController < ApplicationController
   end
 
   def optin_monster_webhook
-    email = params["lead"]["email"]
-    return if email && User.find_by_email(email)
+    lead = params["lead"]
+    return if !lead
+    email = lead["email"]
+    return if !email or (email && User.find_by_email(email))
 
     @user = User.new(email: email)
 
