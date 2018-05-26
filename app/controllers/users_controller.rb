@@ -89,6 +89,30 @@ class UsersController < ApplicationController
   def policy
   end
 
+  def optin_monster_webhook
+    email = params["lead"]["email"]
+    return if email && User.find_by_email(email)
+
+    @user = User.new(email: email)
+
+    gibbon = Gibbon::Request.new(api_key: ENV["MAILCHIMP_API_KEY"])
+
+    if @user.save
+      gibbon
+        .lists(ENV["MAILCHIMP_LIST_ID"])
+        .members(Digest::MD5.hexdigest(@user.email.downcase))
+        .upsert(body: {
+          email_address: @user.email,
+          status: "subscribed",
+          merge_fields: {
+            ME_URL: "#{refer_a_friend_url}?me_ref=#{@user.referral_code}",
+            REFER_URL: "#{root_url}?ref=#{@user.referral_code}",
+            REFER_NUM: 0,
+          }
+        })
+    end
+  end
+
   def redirect
     redirect_to root_path, status: 404
   end
