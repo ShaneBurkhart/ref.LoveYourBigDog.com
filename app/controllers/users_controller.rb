@@ -91,9 +91,11 @@ class UsersController < ApplicationController
 
   def optin_monster_webhook
     lead = params["lead"]
-    return if !lead
+    return render status: 200, json: {} if !lead
     email = lead["email"]
-    return if !email or (email && User.find_by_email(email))
+    if !email or (email && User.find_by_email(email))
+      return render status: 200, json: {}
+    end
 
     @user = User.new(email: email)
 
@@ -113,6 +115,8 @@ class UsersController < ApplicationController
           }
         })
     end
+
+    return render status: 200, json: {}
   end
 
   def redirect
